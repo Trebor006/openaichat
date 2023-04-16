@@ -2,10 +2,14 @@ import React, {useEffect, useState} from 'react';
 import './css/chat.css';
 import axios from 'axios';
 
+interface Message {
+    id: number;
+    content: string;
+    isResponse: boolean;
+}
+
 const Chat = () => {
-    const [messages, setMessages] = useState([
-        {id: 0, content: "Hola Quieres chatear hoy???", isResponse: true},
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [newRequest, setNewRequest] = useState(false);
     const [newMessage, setNewMessage] = useState('');
 
@@ -16,7 +20,7 @@ const Chat = () => {
     const handleSend = () => {
         if (newMessage.trim() === '') return;
 
-        const newId = messages[messages.length - 1].id + 1;
+        const newId = messages.length === 0 ? 1 : messages[messages.length - 1].id + 1;
         const newMessages = [...messages, {id: newId, content: newMessage, isResponse: false}];
 
         setMessages(newMessages);
@@ -46,7 +50,7 @@ const Chat = () => {
 
         const result = await callEndpoint(requestValue);
 
-        const newId = messages[messages.length - 1].id + 1;
+        const newId = messages.length === 0 ? 1 : messages[messages.length - 1].id + 1;
         const newMessages = [...messages, {id: newId, content: result, isResponse: true}];
 
         setMessages(newMessages);
