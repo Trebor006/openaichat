@@ -1,5 +1,6 @@
-#React App
-Este proyecto fue desarrollado con React
+## React App
+
+Este proyecto fue desarrollado con React y depende de la aplicación backend [openaiclient](https://github.com/Trebor006/openaiclient/tree/chat_basico)
 
 ## Installation
 
