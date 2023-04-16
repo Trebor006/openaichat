@@ -17,6 +17,12 @@ const Chat = () => {
         setNewMessage(event.target.value);
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            handleSend();
+        }
+    };
+
     const handleSend = () => {
         if (newMessage.trim() === '') return;
 
@@ -83,6 +89,7 @@ const Chat = () => {
                     placeholder="Escribe aquí tu mensaje"
                     value={newMessage}
                     onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
                     className="chat-input"
                 />
                 <button onClick={handleSend} className="chat-send-button">
